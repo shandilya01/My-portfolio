@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  {% load staticfiles%}
+  {%load staticfiles%}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -73,39 +73,23 @@
   </header>
 
   <main>
+    <div class="container">
+      <h1 class="text-center pt-5">Hey! This is Tushar's Blog</h1>
+      <br/>
+      <br/>
+      <h2>Latest Posts</h2>
+      <hr/>
 
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Hi, I am Tushar</h1>
-          <p class="lead text-muted">Student at IIT-BHU Varanasi | Sport Programmer | Backend Developer (Learning)</p>
-          <p>
-            <a href="mailto:tushar01shandilya@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          </p>
-          <img src = "{% static 'InstaPic.jpeg' %}" height=200 width=200/>
-        </div>
-      </div>
-    </section>
+      {% for blog in blogs.all%}
+        <h3><a href="{%url 'detail' blog.id%}" style ="color:blue ">{{blog.title}}</a></h3>
+        {{blog.pub_date_pretty}}
+        <br/>
+        <img  class="img-fluid" width=200 height=200 src="{{blog.image.url}}" />
+        <br/>
+        <p>{{blog.summary}}</p>
+      {% endfor %}
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-          {% for job in jobs.all %}
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="card-img-top" width=300 height=300 src="{{job.image.url}}" />
-              <div class="card-body">
-                <p class="card-text">{{ job.summary }}</p>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-
-        </div>
-      </div>
     </div>
-
   </main>
 
   <footer class="text-muted py-5">
@@ -117,5 +101,5 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-  </body>
-  </html>
+</body>
+</html>
